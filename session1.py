@@ -245,17 +245,64 @@ try solving the problem with a dictionary.
 
 Once you've come up with your second solution, compare the two. Is one solution better than the other? Why or why not?
 """
+
+
 def max_audience_performances(audiences):
-    max_arr = max(audiences) 
+    max_arr = max(audiences)
     counter = 0
 
     for audience in audiences:
         if audience == max_arr:
-            counter +=1
+            counter += 1
     return max_arr * counter
+
 
 audiences1 = [100, 200, 200, 150, 100, 250]
 audiences2 = [120, 180, 220, 150, 220]
 
-print(max_audience_performances(audiences1))
-print(max_audience_performances(audiences2))
+# print(max_audience_performances(audiences1))
+# print(max_audience_performances(audiences2))
+
+
+"""
+8) Given an array of integers popularity_scores representing the popularity scores of songs in a music festival playlist, 
+return the number of popular song pairs.
+
+A pair (i, j) is called popular if the songs have the same popularity score and i < j.
+
+Hint: number of pairs = (n x n-1)/2
+"""
+
+
+def num_popular_pairs(popularity_scores):
+    counts = {}
+
+    for score in popularity_scores:
+        if score in counts:
+            counts[score] += 1
+        else:
+            counts[score] = 1
+
+    total_pairs = 0
+    for n in counts.values():
+        total_pairs += (n * (n - 1)) // 2
+    return total_pairs
+
+
+popularity_scores1 = [1, 2, 3, 1, 1, 3]
+popularity_scores2 = [1, 1, 1, 1]
+popularity_scores3 = [1, 2, 3]
+
+print(num_popular_pairs(popularity_scores1))
+print(num_popular_pairs(popularity_scores2))
+print(num_popular_pairs(popularity_scores3))
+
+
+"""
+9) You are given two lists of strings s and t representing the stage arrangements of performers in two different performances at a music festival, such that every performer occurs at most once in s and t, and t is a permutation of s.
+The stage arrangement difference between s and t is defined as the sum of the absolute difference between the index of the occurrence of each performer in s and the index of the occurrence of the same performer in t.
+Return the stage arrangement difference between s and t.
+A permutation is a rearrangement of a sequence. For example, [3, 1, 2] and [2, 1 , 3] are both permutations of the list [1, 2, 3].
+
+Hint: Absolute value function
+"""
