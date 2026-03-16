@@ -46,12 +46,11 @@ that maps each artist to their set time.
 An artist artists[i] has set time set_times[i]. Assume i <= 0 < n and len(artists) == len(set_times).
 """
 
-
-def lineup(artists, set_times):
-    result = {}
-    for i in range(len(artists)):
-        result[artists[i]] = set_times[i]
-    return result
+# def lineup(artists, set_times):
+#     result = {}
+#     for i in range(len(artists)):
+#         result[artists[i]] = set_times[i]
+#     return result
 
 
 artists1 = ["Kendrick Lamar", "Chappell Roan", "Mitski", "Rosalia"]
@@ -207,3 +206,56 @@ votes2 = {
 
 # print(best_set(votes1))
 # print(best_set(votes2))
+
+
+"""
+6) You are given an array audiences consisting of positive integers representing 
+the audience size for different performances at a music festival.
+
+Return the combined size of every audience that had the maxmium size.
+
+The audience size of a performance is the number of people who attended that performance.
+"""
+
+
+# def max_audience_performances(audiences):
+#     dictionary = {}
+#     for audience in audiences:
+#         if audience in dictionary:
+#             dictionary[audience] += 1
+#         else:
+#             dictionary[audience] = 1
+#     maximun = max(dictionary)
+#     times = dictionary.get(maximun)
+#     return times * maximun
+
+
+# audiences1 = [100, 200, 200, 150, 100, 250]
+# audiences2 = [120, 180, 220, 150, 220]
+
+
+# print(max_audience_performances(audiences1))
+# print(max_audience_performances(audiences2))
+
+
+"""
+7) If you used a dictionary as part of your solution to max_audience_performances() in the previous problem,
+try reimplementing the function without using a dictionary. If you implemented max_audience_performances() without using a dictionary,
+try solving the problem with a dictionary.
+
+Once you've come up with your second solution, compare the two. Is one solution better than the other? Why or why not?
+"""
+def max_audience_performances(audiences):
+    max_arr = max(audiences) 
+    counter = 0
+
+    for audience in audiences:
+        if audience == max_arr:
+            counter +=1
+    return max_arr * counter
+
+audiences1 = [100, 200, 200, 150, 100, 250]
+audiences2 = [120, 180, 220, 150, 220]
+
+print(max_audience_performances(audiences1))
+print(max_audience_performances(audiences2))
