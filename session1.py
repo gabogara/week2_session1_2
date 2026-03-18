@@ -306,3 +306,92 @@ A permutation is a rearrangement of a sequence. For example, [3, 1, 2] and [2, 1
 
 Hint: Absolute value function
 """
+
+
+"""************************************************************
+
+                            VERSION 2
+"""
+
+"""
+1) Given two lists of length n, crew and position, map the space station crew to their position on board the international space station.
+
+Each crew member crew[i] has job position[i] on board, where 0 <= i < n and len(crew) == len(position).
+Hint: Introduction to dictionaries
+"""
+
+
+def space_crew(crew, position):
+    result = {}
+    for i in range(len(crew)):
+        result[crew[i]] = position[i]
+    return result
+
+
+exp70_crew = [
+    "Andreas Mogensen",
+    "Jasmin Moghbeli",
+    "Satoshi Furukawa",
+    "Loral O'Hara",
+    "Konstantin Borisov",
+]
+
+exp70_positions = [
+    "Commander",
+    "Flight Engineer",
+    "Flight Engineer",
+    " Flight Engineer",
+    "Flight Engineer",
+]
+
+ax3_crew = [
+    "Michael Lopez-Alegria",
+    "Walter Villadei",
+    "Alper Gezeravci",
+    "Marcus Wandt",
+]
+
+ax3_positions = [
+    "Commander",
+    "Mission Pilot",
+    "Mission Specialist",
+    "Mission Specialist",
+]
+
+# print(space_crew(exp70_crew, exp70_positions))
+# print(space_crew(ax3_crew, ax3_positions))
+
+
+"""
+2) Given a dictionary planets that maps planet names to a dictionary containing the planet's number of moons and orbital period, 
+write a function planet_lookup() that accepts a string planet_name and returns a string in the form Planet <planet_name> 
+has an orbital period of <orbital period> Earth days and has <number of moons> moons. 
+If planet_name is not a key in planets, return "Sorry, I have no data on that planet.".
+"""
+
+
+# def planet_lookup(planet_name):
+#     out = ""
+#     if planet_name in planetary_info:
+#         first_key = list(planetary_info[planet_name].items())[0]
+
+#     else:
+#         out = out + "Sorry, I have no data on that planet."
+#     return first_key
+
+
+def planet_lookup(planet_name):
+    if planet_name not in planetary_info:
+        return "Sorry, I have no data on that planet."
+    return f"Planet {planet_name} has an orbital period of {planetary_info[planet_name]['Moons']} Earth days and has {planetary_info[planet_name]['Orbital Period']} moons. "
+
+
+planetary_info = {
+    "Mercury": {"Moons": 0, "Orbital Period": 88},
+    "Earth": {"Moons": 1, "Orbital Period": 365.25},
+    "Mars": {"Moons": 2, "Orbital Period": 687},
+    "Jupiter": {"Moons": 79, "Orbital Period": 10592},
+}
+
+print(planet_lookup("Jupiter"))
+print(planet_lookup("Pluto"))
