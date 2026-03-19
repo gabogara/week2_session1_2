@@ -393,5 +393,108 @@ planetary_info = {
     "Jupiter": {"Moons": 79, "Orbital Period": 10592},
 }
 
-print(planet_lookup("Jupiter"))
-print(planet_lookup("Pluto"))
+# print(planet_lookup("Jupiter"))
+# print(planet_lookup("Pluto"))
+
+
+"""
+3) As part of your job as an astronaut, you need to perform routine safety checks. 
+You are given a dictionary oxygen_levels which maps room names to current oxygen levels and two integers min_val and max_val specifying 
+the acceptable range of oxygen levels. Return a list of room names whose values are outside the range defined by min_val and max_val (inclusive).
+"""
+
+
+def check_oxygen_levels(oxygen_levels, min_val, max_val):
+    result = []
+    for key in oxygen_levels.keys():
+        if oxygen_levels[key] < min_val:
+            result.append(key)
+        elif oxygen_levels[key] > max_val:
+            result.append(key)
+
+    return result
+
+
+oxygen_levels = {
+    "Command Module": 21,
+    "Habitation Module": 20,
+    "Laboratory Module": 19,
+    "Airlock": 22,
+    "Storage Bay": 18,
+}
+
+min_val = 19
+max_val = 22
+
+# print(check_oxygen_levels(oxygen_levels, min_val, max_val))
+
+
+"""
+4) Write a function data_difference() that accepts two dictionaries experiment1 and experiment2 and returns a new dictionary that contains only 
+key-value pairs found exclusively in experiment1 but not in experiment2.
+"""
+
+
+def data_difference(experiment1, experiment2):
+    result = {}
+
+    for key, value in experiment1.items():
+        if key not in experiment2 or experiment2[key] != value:
+            result[key] = value
+    return result
+
+
+exp1_data = {"temperature": 22, "pressure": 101.3, "humidity": 45}
+exp2_data = {"temperature": 18, "pressure": 101.3, "radiation": 0.5}
+
+# print(data_difference(exp1_data, exp2_data))
+
+
+"""
+5) NASA has asked the public to vote on a new name for one of the nodes in the International Space Station. 
+Given a list of strings votes where each string in the list is a voter's suggested new name, implement a function get_winner() 
+that returns the suggestion with the most number of votes.
+
+If there is a tie, return either option.
+"""
+
+
+def get_winner(votes):
+    result = {}
+    for vote in votes:
+        if vote in result:
+            result[vote] += 1
+        else:
+            result[vote] = 1
+    return max(result, key=result.get)
+
+
+votes1 = ["Colbert", "Serenity", "Serenity", "Tranquility", "Colbert", "Colbert"]
+votes2 = ["Colbert", "Serenity", "Serenity", "Tranquility", "Colbert"]
+
+# print(get_winner(votes1))
+# print(get_winner(votes2))
+
+
+"""
+6) Ground control has sent a transmission containing important information. 
+A complete transmission is one where every letter of the English alphabet appears at least once.
+
+Given a string transmission containing only lowercase English letters, return true if the transmission is complete, or false otherwise.
+"""
+
+
+def check_if_complete_transmission(transmission):
+    return len(set(transmission)) == 26
+
+    """
+    :type transmission: str
+    :rtype: bool
+    """
+
+
+transmission1 = "thequickbrownfoxjumpsoverthelazydog"
+transmission2 = "spacetravel"
+
+print(check_if_complete_transmission(transmission1))
+print(check_if_complete_transmission(transmission2))
