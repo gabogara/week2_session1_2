@@ -18,8 +18,8 @@
 """
 
 """
-1) Imagine you are working on a wildlife conservation database. Write a function named most_endangered() that returns the species with 
-the highest conservation priority based on its population.
+1) Imagine you are working on a wildlife conservation database. Write a function named most_endangered() that 
+returns the species with the highest conservation priority based on its population.
 
 The function should take in a list of dictionaries named species_list as a parameter. 
 Each dictionary represents data associated with a species, including its name, habitat, and wild population. 
@@ -30,11 +30,19 @@ If there are multiple species with the lowest population, return the species wit
 
 
 def most_endangered(species_list):
-    min_temp = species_list[0]
+    # min_temp = species_list[0]
+    # for specie in species_list:
+    #     if specie["population"] < min_temp["population"]:
+    #         min_temp = specie
+    # return min_temp["name"]
+    min_population = species_list[0]["population"]
+    key_min = species_list[0]["name"]
     for specie in species_list:
-        if specie["population"] < min_temp["population"]:
-            min_temp = specie
-    return min_temp["name"]
+        if specie["population"] < min_population:
+            min_population = specie["population"]
+            key_min = specie["name"]
+
+    return key_min
 
 
 species_list = [
@@ -46,7 +54,8 @@ species_list = [
 
 # print(most_endangered(species_list))
 """
-2)As part of conservation efforts, certain species are considered endangered and are represented by the string endangered_species. 
+2) As part of conservation efforts, certain species are considered endangered and are represented by the string 
+endangered_species. 
 Each character in this string denotes a different endangered species. 
 You also have a record of all observed species in a particular region, represented by the string observed_species. 
 Each character in observed_species denotes a species observed in the region.
@@ -54,7 +63,6 @@ Each character in observed_species denotes a species observed in the region.
 Your task is to determine how many instances of the observed species are also considered endangered.
 Note: Species are case-sensitive, so "a" is considered a different species from "A".
 Write a function to count the number of endangered species observed.
-
 """
 ## O(n * m)
 
@@ -67,7 +75,7 @@ Write a function to count the number of endangered species observed.
 #     return counter
 
 
-## O(n)
+# ## O(n)
 def count_endangered_species(endangered_species, observed_species):
     my_set = set(endangered_species)
     counter = 0
@@ -87,6 +95,7 @@ observed_species2 = "ZZ"
 
 # print(count_endangered_species(endangered_species1, observed_species1))
 # print(count_endangered_species(endangered_species2, observed_species2))
+
 """
 3)In a wildlife research station, each letter of the alphabet represents a different observation point laid out in a single row. 
 Given a string station_layout of length 26 indicating the layout of these observation points (indexed from 0 to 25), 
@@ -123,10 +132,85 @@ observations1 = "wildlife"
 station_layout2 = "abcdefghijklmnopqrstuvwxyz"
 observations2 = "cba"
 
-print(navigate_research_station(station_layout1, observations1))
-print(navigate_research_station(station_layout2, observations2))
+# print(navigate_research_station(station_layout1, observations1))
+# print(navigate_research_station(station_layout2, observations2))
+
 """
-4)
+4) In your work with a wildlife conservation database, you have two lists: observed_species and priority_species. 
+The elements of priority_species are distinct, and all elements in priority_species are also in observed_species.
+
+Write a function prioritize_observations() that sorts the elements of observed_species such that the 
+relative ordering of items in observed_species matches that of priority_species. 
+Species that do not appear in priority_species should be placed at the end of observed_species in ascending order.
+"""
+
+
+def prioritize_observations(observed_species, priority_species):
+    counter = {}
+    solution = []
+    for observed in observed_species:
+        if observed in counter:
+            counter[observed] += 1
+        else:
+            counter[observed] = 1
+
+    for specie in priority_species:
+        if specie in counter:
+            solution.extend([specie] * counter[specie])
+            del counter[specie]
+
+    remaining = []
+
+    for specie in counter:
+        remaining.extend([specie] * counter[specie])
+
+    remaining.sort()
+    solution.extend(remaining)
+
+    return solution
+
+
+observed_species1 = ["🐯", "🦁", "🦌", "🦁", "🐯", "🐘", "🐍", "🦑", "🐻", "🐯", "🐼"]
+priority_species1 = ["🐯", "🦌", "🐘", "🦁"]
+
+observed_species2 = ["bluejay", "sparrow", "cardinal", "robin", "crow"]
+priority_species2 = ["cardinal", "sparrow", "bluejay"]
+
+print(prioritize_observations(observed_species1, priority_species1))
+print(prioritize_observations(observed_species2, priority_species2))
+
+
+"""
+5) You are given a 0-indexed integer array species_populations of even length, 
+where each element represents the population of a particular species in a wildlife reserve.
+
+As long as species_populations is not empty, you must repetitively:
+
+Find the species with the minimum population and remove it.
+Find the species with the maximum population and remove it.
+Calculate the average population of the two removed species.
+The average of two numbers a and b is (a+b)/2.
+
+For example, the average of 200 and 300 is (200+300)/2=250.
+
+Return the number of distinct averages calculated using the above process.
+
+Note that when there is a tie for a minimum or maximum population, any can be removed.
+"""
+
+
+def distinct_averages(species_populations):
+    pass
+
+species_populations1 = [4, 1, 4, 0, 3, 5]
+species_populations2 = [1, 100]
+
+print(distinct_averages(species_populations1))
+print(distinct_averages(species_populations2))
+
+
+"""
+
 """
 
 
