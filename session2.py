@@ -176,8 +176,8 @@ priority_species1 = ["🐯", "🦌", "🐘", "🦁"]
 observed_species2 = ["bluejay", "sparrow", "cardinal", "robin", "crow"]
 priority_species2 = ["cardinal", "sparrow", "bluejay"]
 
-print(prioritize_observations(observed_species1, priority_species1))
-print(prioritize_observations(observed_species2, priority_species2))
+# print(prioritize_observations(observed_species1, priority_species1))
+# print(prioritize_observations(observed_species2, priority_species2))
 
 
 """
@@ -202,31 +202,17 @@ Note that when there is a tie for a minimum or maximum population, any can be re
 def distinct_averages(species_populations):
     pass
 
+
 species_populations1 = [4, 1, 4, 0, 3, 5]
 species_populations2 = [1, 100]
 
-print(distinct_averages(species_populations1))
-print(distinct_averages(species_populations2))
+# print(distinct_averages(species_populations1))
+# print(distinct_averages(species_populations2))
 
 
 """
 
 """
-
-
-def remove_low_rated_destinations(destinations, rating_threshold):
-    result = {}
-    for destination, rating in destinations.items():
-        if rating >= rating_threshold:
-            result[destination] = rating
-    return result
-
-
-destinations = {"Paris": 4.8, "Berlin": 3.5, "Addis Ababa": 4.9, "Moscow": 2.8}
-destinations2 = {"Bogotá": 4.8, "Kansas City": 3.9, "Tokyo": 4.5, "Sydney": 3.0}
-
-# print(remove_low_rated_destinations(destinations, 4.0))
-# print(remove_low_rated_destinations(destinations2, 4.9))
 
 
 """UPI TEMPLATE
@@ -272,3 +258,81 @@ destinations2 = {"Bogotá": 4.8, "Kansas City": 3.9, "Tokyo": 4.5, "Sydney": 3.0
 
 
 """
+"""
+   -----------------------    SET VERSION 2   --------------------------------------
+"""
+
+
+"""
+1)You're planning an epic trip and have a dictionary of destinations mapped to their respective rating scores. 
+Your goal is to visit only the best-rated destinations. Write a function that takes in a dictionary 
+destinations and a rating_threshold as parameters. 
+The function should iterate through the dictionary and remove all destinations that have a rating 
+strictly below the rating_threshold. Return the updated dictionary.
+
+"""
+
+
+def remove_low_rated_destinations(destinations, rating_threshold):
+
+    result = {}
+    for key, value in destinations.items():
+        if value >= rating_threshold:
+            result[key] = value
+    return result
+
+
+destinations = {"Paris": 4.8, "Berlin": 3.5, "Addis Ababa": 4.9, "Moscow": 2.8}
+destinations2 = {"Bogotá": 4.8, "Kansas City": 3.9, "Tokyo": 4.5, "Sydney": 3.0}
+
+# print(remove_low_rated_destinations(destinations, 4.0))
+# print(remove_low_rated_destinations(destinations2, 4.9))
+
+
+"""
+2) As a seasoned traveler, you've collected a variety of souvenirs from different destinations. 
+You have an array of string souvenirs, where each string represents a type of souvenir. 
+You want to know if the number of occurrences of each type of souvenir in your collection is unique.
+
+Write a function that takes in an array souvenirs and returns True if the number of 
+occurrences of each value in the array is unique, or False otherwise.
+"""
+
+
+def unique_souvenir_counts(souvenirs):
+    frecuency = {}
+
+    for souvenir in souvenirs:
+        if souvenir in frecuency:
+            frecuency[souvenir] += 1
+        else:
+            frecuency[souvenir] = 1
+
+    return len(frecuency.values()) == len(set(frecuency.values()))
+
+
+souvenirs1 = ["keychain", "hat", "hat", "keychain", "keychain", "postcard"]
+souvenirs2 = ["postcard", "postcard", "postcard", "postcard"]
+souvenirs3 = ["keychain", "magnet", "hat", "candy", "postcard", "stuffed bear"]
+
+# print(unique_souvenir_counts(souvenirs1))
+# print(unique_souvenir_counts(souvenirs2))
+# print(unique_souvenir_counts(souvenirs3))
+
+
+"""
+two_sum
+"""
+
+
+def two_sum(arr, target):
+    vistos = {}
+
+    for i, num in enumerate(arr):
+        faltante = target - num
+        if faltante in vistos:
+            return [vistos[faltante], i]
+        vistos[num] = i
+
+
+print(two_sum([2, 7, 11, 15], 9))
